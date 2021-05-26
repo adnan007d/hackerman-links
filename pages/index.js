@@ -1,11 +1,23 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import LinkCard from "../components/LinkCard";
-import db from "../utils/firebase";
+import db, { auth } from "../utils/firebase";
+import LinksContext from "../context/LinksContext";
+import nookies, { parseCookies } from "nookies";
 
-export default function Home({ data }) {
+export default function Home({ data, user }) {
   const [filteredSearch, setFilteredSearch] = useState(null);
+  const { setUser } = useContext(LinksContext);
+  const cookies = parseCookies();
+  if (user) setUser(user);
+
+  useEffect(() => {
+    const cookies = parseCookies();
+    setUser(cookies?.user);
+    return () => {};
+  }, [cookies]);
+
   const handleChange = (e) => {
     const search = e.target.value;
     if (!search) {
@@ -54,9 +66,22 @@ export default function Home({ data }) {
 
 export async function getServerSideProps(context) {
   const linksData = await db.collection("links").get();
+  await auth.signInWithEmailAndPassword(
+    process.env.EMAIL,
+    process.env.PASSWORD
+  );
 
+  const cookies = nookies.get(context);
+
+  const username = cookies.user || "dummy";
+
+  const docs = (
+    await db.collection("admins").where("username", "==", username).get()
+  ).docs;
+
+  const user = docs.length === 1 ? username : null;
   const data = linksData.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   return {
-    props: { data: data },
+    props: { data: data, user: user },
   };
 }
