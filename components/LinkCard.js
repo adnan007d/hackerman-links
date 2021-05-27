@@ -20,9 +20,9 @@ const LinkCard = ({ name, path, to }) => {
           {name}
         </h1>
         <div className="border-t border-black w-full"></div>
-        <div className="flex justify-center items-center mt-5 w-full p-2">
+        <div className="flex justify-center items-center mt-5 w-full h-full p-2">
           <img
-            className="object-cover h-full"
+            className="object-contain h-full justify-self-center"
             src={to}
             loading="lazy"
             alt={name}
