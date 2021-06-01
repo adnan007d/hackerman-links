@@ -22,7 +22,7 @@ const LinkCard = ({ name, path, to }) => {
         <div className="border-t border-black w-full"></div>
         <div className="flex justify-center items-center mt-1 w-full h-full p-2">
           <img
-            className="object-contain h-full justify-self-center"
+            className="object-contain justify-self-center"
             src={to}
             loading="lazy"
             alt={name}
