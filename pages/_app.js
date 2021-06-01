@@ -1,11 +1,6 @@
 import "../styles/globals.css";
-import { LinksProvider } from "../context/LinksContext";
 function MyApp({ Component, pageProps }) {
-  return (
-    <LinksProvider>
-      <Component {...pageProps} />
-    </LinksProvider>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;

@@ -1,12 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer components {
-  .pass_icon {
-    @apply cursor-pointer border-l border-gray-200 px-1 h-8 text-gray-400;
-  }
-  .btn {
-    @apply bg-gray-400 text-gray-700 focus:outline-none p-2 rounded-md shadow-md;
-  }
-}
