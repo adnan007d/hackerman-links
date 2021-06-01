@@ -80,7 +80,11 @@ export async function getServerSideProps(context) {
   ).docs;
 
   const user = docs.length === 1 ? username : null;
-  const data = linksData.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  const data = linksData.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+    timestamp: null,
+  }));
   return {
     props: { data: data, user: user },
   };
