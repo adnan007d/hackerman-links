@@ -16,11 +16,11 @@ const LinkCard = ({ name, path, to }) => {
   return (
     <div className="flex flex-col m-3 shadow-xl rounded-xl">
       <div className=" flex flex-col items-center rounded-xl w-36 sm:w-48 md:w-56 lg:w-64 xl:w-80 flex-grow bg-gray-500">
-        <h1 className="text-base text-white sm:text-lg md:text-xl lg:text-3xl p-2">
+        <h1 className="text-base text-white sm:text-lg md:text-xl lg:text-3xl p-2 text-center">
           {name}
         </h1>
         <div className="border-t border-black w-full"></div>
-        <div className="flex justify-center items-center mt-5 w-full h-full p-2">
+        <div className="flex justify-center items-center mt-1 w-full h-full p-2">
           <img
             className="object-contain h-full justify-self-center"
             src={to}
