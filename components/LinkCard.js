@@ -6,7 +6,7 @@ const LinkCard = ({ name, path, to }) => {
   const router = useRouter();
   const copyToClipboard = () => {
     const input = document.createElement("input");
-    input.value = `${window.location.host}/${path}`;
+    input.value = `${window.location.protocol}//${window.location.host}/${path}`;
     document.body.appendChild(input);
     input.select();
     document.execCommand("copy");
